@@ -1,6 +1,6 @@
 document.getElementById('query').addEventListener('input', function() {
     const query = this.value;
-    fetch(`/buscar?q=${encodeURIComponent(query)}`)
+    fetch(`https://buscador-nu4gwdjwz-pitagoritas-projects.vercel.app/buscar?q=${encodeURIComponent(query)}`)
         .then(response => response.json())
         .then(data => {
             let resultsDiv = document.getElementById('results');
