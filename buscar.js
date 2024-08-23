@@ -1,6 +1,6 @@
 document.getElementById('query').addEventListener('input', function() {
     const query = this.value;
-    fetch(`http://127.0.0.1:5000/buscar?q=${encodeURIComponent(query)}`)
+    fetch(`/buscar?q=${encodeURIComponent(query)}`)
         .then(response => response.json())
         .then(data => {
             let resultsDiv = document.getElementById('results');
