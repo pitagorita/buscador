@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Buscador de Trabajadores</title>
+   </head>
+<body>
+    <div class="container">
+        <h1>Buscador en Excel</h1>
+        <input type="text" id="query" placeholder="Ingrese RUT o Apellido">
+        <div id="results" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('query').addEventListener('input', function() {
+            const query = this.value;
+            fetch(`/buscar?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    let resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = '';
+
+                    if (data.length > 0) {
+                        data.forEach(item => {
+                            let p = document.createElement('p');
+                            p.textContent = JSON.stringify(item);
+                            resultsDiv.appendChild(p);
+                        });
+                    } else {
+                        resultsDiv.textContent = 'No se encontraron resultados';
+                    }
+                });
+        });
+    </script>
+</body>
+</html>
